@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    // Add other admin routes here
+});
 
 Route::get('/', function () {
     return view('welcome');
