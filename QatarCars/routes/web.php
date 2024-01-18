@@ -16,7 +16,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     // Add other admin routes here
 });
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+use App\Http\Controllers\SocialController;
+
+Route::get('/login/{provider}', [SocialController::class, 'redirectToProvider']);
+Route::get('/login/{provider}/callback', [SocialController::class, 'handleProviderCallback']);
+use App\Http\Controllers\AdminController;
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    // Add more routes as needed
 });
