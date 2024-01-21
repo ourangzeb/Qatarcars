@@ -30,6 +30,6 @@ class VersionSpec extends Model
     // Relationship with generation
     public function generation()
     {
-        return $this->belongsTo(Generation::class);
+        return $this->belongsTo(CarGeneration::class);
     }
 }
